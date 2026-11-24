@@ -21,7 +21,75 @@ a {
 a:hover {
   
   color:#00BFFF;
-  
+
+}
+
+/* ---- Top navigation bar (Home / Back) ---- */
+tw-sidebar {
+  display: none;
+}
+
+tw-story {
+  padding-top: calc(5% + 3.5em);
+}
+
+.story-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  background-color: #0d1b3e;
+  border-bottom: 3px solid #4169e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.story-nav tw-link,
+.story-nav .nav-btn {
+  display: inline-block;
+  padding: 0.35em 0.9em;
+  border: 1px solid #4169e1;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s ease-in-out;
+}
+
+.story-nav tw-link,
+.story-nav tw-link:hover,
+.story-nav tw-link:active,
+.story-nav .visited,
+.story-nav .visited:hover {
+  color: #ffffff;
+}
+
+.story-nav tw-link:hover,
+.story-nav tw-link:focus-visible {
+  background-color: #4169e1;
+}
+
+.story-nav tw-link:focus-visible {
+  outline: 2px solid #00BFFF;
+  outline-offset: 2px;
+}
+
+.story-nav .nav-disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.story-nav .nav-current {
+  background-color: #4169e1;
+  cursor: default;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="" position="675,500" size="100,100">[[Start-&gt;Gather item details]]</tw-passagedata><tw-passagedata pid="2" name="Gather item details" tags="" position="850,500" size="100,100">Gather the article or item details. Make a note of them (the reference).
 
 (Keep in mind the question, &#39;What is the user searching for?&#39;)
@@ -105,7 +173,10 @@ Is the item (article, book etc) part of our collection / holdings?
 [[Yes-&gt;WORKAROUND!]]
 
 [[No-&gt;ILL!]]
-</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="16" name="Navigation" tags="header" position="500,500" size="100,100">{&lt;nav class=&quot;story-nav&quot; aria-label=&quot;Page navigation&quot;&gt;
+(if: (history:)&#39;s length &gt; 0)[(link-undo: &quot;← Back&quot;)](else:)[&lt;span class=&quot;nav-btn nav-disabled&quot; aria-disabled=&quot;true&quot;&gt;← Back&lt;/span&gt;]
+(if: (passage:)&#39;s name is &quot;Start&quot;)[&lt;span class=&quot;nav-btn nav-current&quot; aria-current=&quot;page&quot;&gt;⌂ Home&lt;/span&gt;](else:)[(link-goto: &quot;⌂ Home&quot;, &quot;Start&quot;)]
+&lt;/nav&gt;}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
